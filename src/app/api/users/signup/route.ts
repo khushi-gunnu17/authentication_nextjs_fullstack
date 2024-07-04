@@ -57,4 +57,4 @@ export async function POST(request : NextRequest) {
 }
 
 
-// nextjs projects are deployed on vercel
+// nextjs projects are deployed on vercel coz nextjs works on edge

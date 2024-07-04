@@ -2,12 +2,12 @@ import User from '@/models/userModel';
 import nodemailer from 'nodemailer'
 import bcryptjs from "bcryptjs"
 
-// should not use any typically, but right now here it is fine.
+// should not use 'any' typically, but right now here it is fine.
 export const sendEmail = async({email, emailType, userId} : any) => {
 
     try {
 
-        // gives special characters, but uuid library doesn't provide with any special characters
+        // This code gives special characters, but uuid library doesn't provide with any special characters in the hashed password.
         const hashedToken = await bcryptjs.hash(userId.toString(), 10)
 
         // configuring mail for usage
