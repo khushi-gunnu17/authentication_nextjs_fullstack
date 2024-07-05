@@ -14,30 +14,31 @@ export const sendEmail = async({email, emailType, userId} : any) => {
         if (emailType === "VERIFY") {
 
             await User.findByIdAndUpdate(userId, 
-                { verifyToken : hashedToken, verifyTokenExpiry : Date.now() + 360000 }          // how much time is this ?
+                { verifyToken : hashedToken, verifyTokenExpiry : Date.now() + 3600000 }          // how much time is this ?
             )
 
         } else if (emailType === "RESET") {
 
             await User.findByIdAndUpdate(userId, 
-                { forgotPasswordToken : hashedToken, forgotPasswordTokenExpiry : Date.now() + 360000 }          // can give other time also
+                { forgotPasswordToken : hashedToken, forgotPasswordTokenExpiry : Date.now() + 3600000 }          // can give other time also
             )
 
         }
 
 
-        const transport = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
               user: "bbaf8616bb91c6",       // These should not be here, but in the env file
-              pass: "********4d97"
-            }
+              pass: "72728364d97"
+            },
+            debug: true
         });
 
 
         const mailOptions = {
-            from: 'khushiastrogeek@gmail.com',
+            from: 'khushi@khushi.ai',
             to: email,
             subject: emailType === 'VERIFY' ? "Verify your email" : "Reset your password" ,
             // text is also there which we can use as an option
@@ -48,7 +49,7 @@ export const sendEmail = async({email, emailType, userId} : any) => {
         }
 
 
-        const mailResponse = await transport.sendMail(mailOptions)
+        const mailResponse = await transporter.sendMail(mailOptions)
 
         return mailResponse
 

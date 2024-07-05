@@ -19,6 +19,7 @@ export async function POST(request : NextRequest) {
 
         console.log(reqBody);
 
+        // checking if user already exists
         const user = await User.findOne({email})
 
         if (user) {
@@ -42,13 +43,14 @@ export async function POST(request : NextRequest) {
 
 
         // sending verification email
-        await sendEmail({email, emailType : "VERIFY", userId : savedUser._id})
+        await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
 
         return NextResponse.json({
-            message : "User Registered Successfully !",
+            message : "User created successfully",
             success : true,
             savedUser
         })
+        
         
         
     } catch (error : any) {
