@@ -48,7 +48,7 @@ export const sendEmail = async({email, emailType, userId} : any) => {
 
 
         const mailOptions = {
-            from: 'khushi@khushi.ai',
+            from: 'khushiastrogeek@gmail.com',
             to: email,
             subject: emailType === 'VERIFY' ? "Verify your email" : "Reset your password" ,
             // text is also there which we can use as an option
