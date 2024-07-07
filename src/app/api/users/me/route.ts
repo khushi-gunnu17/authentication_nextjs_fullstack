@@ -9,9 +9,9 @@ connectDB()
 export async function POST(request : NextRequest) {
 
     // extracting data from token
-    const userID = await getDataFromToken(request)
+    const userId = await getDataFromToken(request)
 
-    const user = await User.findOne({_id : userID}).select("-password -username")
+    const user = await User.findOne({_id : userId}).select("-password -username")
 
     // checking if there is no user.
     if(!user) {

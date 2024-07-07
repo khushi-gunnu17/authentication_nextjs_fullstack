@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+// some functionalities in nextjs are different from reactjs's model folder here
 const userSchema = new mongoose.Schema({
 
     username : {
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
 
 })
 
-// if the model is already made , handle the condition then in nextjs
+// if the model is already made in the database, then handle that condition also in nextjs
 const User = mongoose.models.users || mongoose.model("users", userSchema)
 
 export default User

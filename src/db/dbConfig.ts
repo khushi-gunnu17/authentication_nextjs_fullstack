@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 export async function connectDB() {
     try {
 
-        mongoose.connect(process.env.MONGO_URI!)        // ! - need to give this so as to ensure that type safety is there.
+        mongoose.connect(process.env.MONGO_URI!)        // ! - need to give this so as to ensure that type safety checking is there.
         const connection = mongoose.connection
 
         // can listen to the events of the connection
