@@ -28,7 +28,7 @@ export default function VerifyEmail() {
     }
 
 
-    // the component should work only when the component mounts first
+    // the component should work only when it mounts for the first time.
     useEffect(() => {
 
         setError(false)
@@ -41,13 +41,17 @@ export default function VerifyEmail() {
         // const {query} = router
         // const urlToken = query.token
 
-    }, [])
+    }, [])  // router for the second method
 
 
     useEffect(() => {
+
+        setError(false)
+
         if (token.length > 0) {
             verifyUserEmail()
         }
+
     }, [token])
 
 

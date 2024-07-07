@@ -1,4 +1,4 @@
-"use client"
+"use client"    // directive which makes this page a client component
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function SignupPage() {
 
+    // router comes from two places : router and navigation
     const router = useRouter()
 
     const [user, setUser] = useState({
@@ -26,6 +27,7 @@ export default function SignupPage() {
 
             setLoading(true)
 
+            // axios is much preferred because it handles some error states
             const response = await axios.post("/api/users/signup", user)
             
             console.log("Signup Success : ", response.data);
