@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
- 
 
-// middleware always works on edge
+// The file name should be middleware only.
+
+// middleware always works on edge and is different from middlewares in express or any other framework or library.
 export function middleware(request: NextRequest) {
 
+    // path is where the user is located.
     const path = request.nextUrl.pathname
 
     const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail'
@@ -16,12 +18,13 @@ export function middleware(request: NextRequest) {
     }   
 
     if (!isPublicPath && !token) {
-        return NextResponse.redirect(new URL('/login', request.nextUrl))
+        return NextResponse.redirect(new URL('/login', request.nextUrl))    
     }
     
 }
 
 
+// matcher means that in these routes the middlware has to be runned.
 export const config = {
     matcher: [
         '/',
